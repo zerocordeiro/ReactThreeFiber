@@ -9,7 +9,7 @@ import gsap from "gsap"
 
 
 
-export const FLOOR_HEIGHT = 2.3;
+export const FLOOR_HEIGHT = 10;
 export const NB_FLOORS = 4;
 
 
@@ -29,12 +29,11 @@ export function Senhas(props) {
     tl.current.seek(scroll.offset*tl.current.duration());
 
 
-    if (senhas.current.position.y < 1) {// Change 4 to the desired stopping position
-      senhas.current.position.y += 0.04;   // You can adjust the speed here
-      senhas.current.rotation.y += Math.PI*2;
-    }
-
-   
+    // if (senhas.current.position.y > 1) {// Change 4 to the desired stopping position
+    //   senhas.current.position.y -= 0.02;   // You can adjust the speed here
+    //   senhas.current.rotation.y += Math.PI*0.01;
+    // }
+ console.log(scroll.offset);
   });
 
 
@@ -43,20 +42,33 @@ export function Senhas(props) {
 
 
 
-   
- 
 
     //Vertical Animatiom
     tl.current.to(
         ref.current.position,
         {
-            duration: 4,
-            y: -FLOOR_HEIGHT * (NB_FLOORS - 0.29),
+            duration: 1,
+            y: -FLOOR_HEIGHT * 1,
         },
         0
     );
+    tl.current.to(
+        ref.current.position,
+        {
+            duration: 1,
+            y: -FLOOR_HEIGHT * 2,
+        },
+        1
+    );
+    tl.current.to(
+        ref.current.position,
+        {
+            duration: 1,
+            y: -FLOOR_HEIGHT * 3,
+        },
+        2
+    );
 
-    
 
   //   Senhas
   //   tl.current.to(
@@ -159,54 +171,47 @@ export function Senhas(props) {
   //   }, 4
   // )
 
-    
-    
-  
-  
-
-
     //Object Animations
 
-
-
-  }, [])
-
-
-
+  }, []);
 
 
 
   return (
-    <group {...props} dispose={null} ref={ref}>
-        <group ref={senhas}  position-y={-3}>
+    <group {...props} dispose={null} ref={ref} position={[-3,0,0]}>
+        <group ref={senhas}  position={[0,-2,0]}>
           <mesh geometry={nodes.Cube.geometry} material={materials['Material.002']} position={[0, 1.286, 0]} castShadow  />
           <mesh geometry={nodes.Plane.geometry} material={materials['Material.001']} position={[1.021, 2.388, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[1, 1, 0.644]} castShadow />
           <mesh geometry={nodes.Plane001.geometry} material={materials['Material.001']} position={[1.188, 0, 0]} castShadow receiveShadow/>
         </group>
+
         <group ref={teste}>
-          <mesh  position={[0,14,0]}  castShadow> 
+          <mesh  position={[0,FLOOR_HEIGHT,0]}  castShadow> 
             <boxGeometry/>
             <meshStandardMaterial color={0xce2727}/>
           </mesh>
         </group>
+
         <group ref={teste2}>
-          <mesh  position={[0,21,0]}  castShadow> 
+          <mesh  position={[0,FLOOR_HEIGHT*2,0]}  castShadow> 
             <boxGeometry/>
             <meshStandardMaterial color={0xce2727}/>
           </mesh>
         </group>
+
         <group ref={teste3}>
-          <mesh  position={[0,29,0]} castShadow > 
+          <mesh  position={[0,FLOOR_HEIGHT*3,0]} castShadow > 
             <boxGeometry/>
             <meshStandardMaterial color={0xce2727}/>
           </mesh>
         </group>
+
         <group ref={luz1}>
-          <directionalLight position={[3,14,0]} intensity={4} castShadow/>
+          <directionalLight position={[3,140,0]} intensity={4} castShadow  />
         </group>
         <group>
-          <mesh scale={[1,200,200]} position={[-6,0,0]} receiveShadow>
-            <boxGeometry/>
+          <mesh position={[-8,25,0]} receiveShadow rotation={[0,Math.PI/2,0]}>
+            <planeGeometry args={[100, 150]}/>
             <meshStandardMaterial />
           </mesh>
         </group>
