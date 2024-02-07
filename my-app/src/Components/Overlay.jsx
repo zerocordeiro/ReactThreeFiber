@@ -39,10 +39,10 @@ export const Overlay = () => {
 
   return (
     <Scroll html>
-      <div class="w-screen">
+      <div className="w-screen">
         <Section opacity={opacityFirstSection}>
           <details>
-	         <summary className="font-bold text-2x1  p-3 m-0 transition: 150">DISPENSADOR</summary>
+	          <summary className="font-bold text-2x1  p-3 m-0 transition: 150">DISPENSADOR</summary>
 	          <p className="text-gray-500 text-2x1  p-3 m-0">Lorem ipsum </p>
             </details>
           
