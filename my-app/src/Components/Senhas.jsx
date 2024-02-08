@@ -45,12 +45,28 @@ export function Senhas(props) {
     tl.current.seek(scroll.offset*tl.current.duration());
 
 
-    if (senhas.current.position.y > -2.5) {// Change 4 to the desired stopping position
-      senhas.current.position.y -= 0.05;   // You can adjust the speed here
-      senhas.current.rotation.y += Math.PI*0.02;
-    }
+    // if (senhas.current.position.y > -2.5) {// Change 4 to the desired stopping position
+    //   senhas.current.position.y -= 0.05;   // You can adjust the speed here
+    //   // senhas.current.rotation.y += Math.PI*0.02;
+    // }
   // console.log(scroll.offset);
   });
+
+  useFrame(({clock}) => {
+    const a = clock.getElapsedTime();
+    senhas.current.rotation.y+=Math.sin(Math.PI/2+a)/200;
+    bloco01.current.rotation.y+=Math.sin(Math.PI/2+a)/200;
+    bloco02.current.rotation.y+=Math.sin(Math.PI/2+a)/200;
+    bloco03.current.rotation.y+=Math.sin(Math.PI/2+a)/200;
+    if(scroll.offset<1){
+      ref.current.position.y+=Math.sin(3*a)/15;
+    }
+    
+
+    
+    
+  }
+  );
 
 
   useLayoutEffect(() => {
@@ -62,26 +78,26 @@ export function Senhas(props) {
       {
           duration:1, 
           y: -FLOOR_HEIGHT, 
-          x: -1,
+          x: -3,
       },
       0
   );
-  tl.current.to(
-      ref.current.rotation,
-      {
-          duration:1, 
-          y: -Math.PI/12, 
-      },
-      0
-  );
-  tl.current.to(
-      bloco02.current.rotation,
-      {
-          duration:1, 
-          y: Math.PI/6, 
-      },
-      0
-  );
+  // tl.current.to(
+  //     ref.current.rotation,
+  //     {
+  //         duration:1, 
+  //         y: -Math.PI/12, 
+  //     },
+  //     0
+  // );
+  // tl.current.to(
+  //     bloco02.current.rotation,
+  //     {
+  //         duration:1, 
+  //         y: Math.PI/6, 
+  //     },
+  //     0
+  // );
 
 
   tl.current.to(
@@ -89,33 +105,33 @@ export function Senhas(props) {
       {
           duration:1, 
           y: -FLOOR_HEIGHT* 2, 
-          x: 0,
+          x: -4.5,
       },
       1
   );
-  tl.current.to(
-    ref.current.rotation,
-    {
-        duration:1, 
-        y: Math.PI/12, 
-    },
-    1
-  );
-  tl.current.to(
-    bloco03.current.rotation,
-    {
-        duration:1, 
-        y: -Math.PI/10, 
-    },
-    1
-  );
+  // tl.current.to(
+  //   ref.current.rotation,
+  //   {
+  //       duration:1, 
+  //       y: Math.PI/12, 
+  //   },
+  //   1
+  // );
+  // tl.current.to(
+  //   bloco03.current.rotation,
+  //   {
+  //       duration:1, 
+  //       y: -Math.PI/10, 
+  //   },
+  //   1
+  // );
 
   tl.current.to(
       ref.current.position,
       {
           duration:1, 
           y: -FLOOR_HEIGHT* 3, 
-          x: -0.5,
+          x: -6,
       },
       2
   );
@@ -140,8 +156,9 @@ export function Senhas(props) {
 
 
   return (
+    <>
     <group {...props} dispose={null} ref={ref} position={[0,0,0]}>
-        <group ref={senhas}  position={[-4,2.5,0]}>
+        <group ref={senhas}  position={[-4,-2,0]}>
           <mesh geometry={nodes.Cube.geometry} material={materials['Material.002']} position={[0, 1.286, 0]} castShadow  />
           <mesh geometry={nodes.Plane.geometry} material={materials['Material.001']} position={[1.021, 2.388, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[1, 1, 0.644]} castShadow />
           <mesh geometry={nodes.Plane001.geometry} material={materials['Material.001']} position={[1.188, 0, 0]} castShadow receiveShadow/>
@@ -149,10 +166,10 @@ export function Senhas(props) {
 
     <group
       position={[0, FLOOR_HEIGHT,0]}
-      rotation={[0, 0, 0]}
+      rotation={[0, Math.PI/2, 0]}
       ref={bloco01}
     >
-      <mesh>  
+      <mesh castShadow>  
         <boxGeometry args={[2.9, 5.1, 0.25]} />
         <meshBasicMaterial color='#445577' />
       </mesh>
@@ -165,10 +182,10 @@ export function Senhas(props) {
 
     <group
       position={[0, 2*FLOOR_HEIGHT, 0]} 
-      rotation={[0, Math.PI/8, 0]} 
+      rotation={[0, Math.PI/2, 0]} 
       ref={bloco02}
     > 
-      <mesh>  
+      <mesh castShadow>  
         <boxGeometry args={[5.1, 2.9, 0.25]} />
         <meshBasicMaterial color='#445577' />
       </mesh>
@@ -181,10 +198,10 @@ export function Senhas(props) {
 
     <group
       position={[0 , 3*FLOOR_HEIGHT, 0]} 
-      rotation={[0, -Math.PI / 3.5, 0]}
+      rotation={[0, Math.PI/2, 0]}
       ref={bloco03}
     >
-      <mesh>  
+      <mesh castShadow>  
       <boxGeometry args={[5.1, 2.9, 0.25]} />
       <meshBasicMaterial color='#445577' />
       </mesh>
@@ -211,8 +228,13 @@ export function Senhas(props) {
       <meshBasicMaterial attach="material" map={texture4} toneMapped={false}/>
     </mesh>
     </group> */}
-
+    
     </group>
+    {/* <mesh position={[-8,25,0]} receiveShadow rotation={[0,Math.PI/2,0]}>
+    <planeGeometry args={[100, 150]}/>
+    <meshStandardMaterial color='#FFaa77'/>
+    </mesh> */}
+    </>
     
     
     
