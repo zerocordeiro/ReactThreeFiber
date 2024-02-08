@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
-import { Experience } from "./Components/Experience.jsx"
-import './App.css' 
+import { Experience } from "./components/Experience.jsx"
+import './styles/App.css' 
 import * as THREE from 'three'
 
 
