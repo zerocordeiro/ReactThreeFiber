@@ -20,7 +20,7 @@ export const NB_FLOORS = 4;
 
 
 export function Senhas(props) {
-  const { nodes, materials } = useGLTF('./Dispensador.glb')
+  const { nodes, materials } = useGLTF('./src/Dispensador.glb')
   const ref = useRef();
   const tl = useRef();
 
