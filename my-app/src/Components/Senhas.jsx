@@ -34,6 +34,7 @@ export function Senhas(props) {
   const bloco02 = useRef();
   const bloco03 = useRef();
   const bloco04 = useRef();
+  const displayRef = useRef();
 
   const texturedisplay = useLoader(THREE.TextureLoader, img_display);
   const texture1 = useLoader(THREE.TextureLoader, img1);
@@ -84,6 +85,36 @@ export function Senhas(props) {
       },
       0
   );
+    tl.current.to(
+      displayRef.current.position,
+      {
+          duration:1, 
+          y: FLOOR_HEIGHT+1.8, 
+          x: 0,
+      },
+      0
+  );
+    tl.current.to(
+      displayRef.current.rotation,
+      {
+          duration:1, 
+          y: Math.PI/2,
+      },
+      0
+  );
+    tl.current.to(
+      displayRef.current.scale,
+      {
+          duration:1, 
+          x:1,
+          y:1,
+      },
+      0
+  );
+  
+
+
+
   // tl.current.to(
   //     ref.current.rotation,
   //     {
@@ -101,16 +132,44 @@ export function Senhas(props) {
   //     0
   // );
 
+  tl.current.to(
+    ref.current.position,
+    {
+        duration:1, 
+        y: -2*FLOOR_HEIGHT, 
+        x: -3,
+    },
+    1
+);
+
 
   tl.current.to(
-      ref.current.position,
+      displayRef.current.position,
       {
           duration:1, 
-          y: -FLOOR_HEIGHT* 2, 
-          x: -4.5,
+          y: 4.33, 
+          x: 0.175,
       },
       1
   );
+  tl.current.to(
+      displayRef.current.rotation,
+      {
+          duration:1, 
+          y: Math.PI*.204, 
+      },
+      1
+  );
+  tl.current.to(
+      displayRef.current.scale,
+      {
+          x:.1,
+          y:.1,
+      },
+      1
+  );
+   // position={[0.175,4.33,0]} rotation={[0,Math.PI/2,0]} rotation-z={Math.PI/2} rotation-x={-Math.PI/2} rotation-y={Math.PI*.204} scale={.1} ref={displayRef}>  
+
   // tl.current.to(
   //   ref.current.rotation,
   //   {
@@ -127,24 +186,33 @@ export function Senhas(props) {
   //   },
   //   1
   // );
-
   tl.current.to(
-      ref.current.position,
-      {
-          duration:1, 
-          y: -FLOOR_HEIGHT* 3, 
-          x: -6,
-      },
-      2
-  );
-  tl.current.to(
-    ref.current.rotation,
+    ref.current.position,
     {
         duration:1, 
-        y: -Math.PI/12, 
+        y: -FLOOR_HEIGHT* 3, 
+        x: -4.5,
     },
     2
-  );
+);
+
+tl.current.to(
+  ref.current.position,
+  {
+      duration:1, 
+      y: -FLOOR_HEIGHT* 4, 
+      x: -6,
+  },
+  3
+);
+tl.current.to(
+ref.current.rotation,
+{
+    duration:1, 
+    y: -Math.PI/12, 
+},
+3
+);
   // tl.current.to(
   //   bloco04.current.rotation,
   //   {
@@ -165,14 +233,14 @@ export function Senhas(props) {
           <mesh geometry={nodes.Plane.geometry} material={materials['Material.001']} position={[1.021, 2.388, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[1, 1, 0.644]} castShadow />
           <mesh geometry={nodes.Plane001.geometry} material={materials['Material.001']} position={[1.188, 0, 0]} castShadow receiveShadow/>
           <mesh
-          position={[0.175,4.33,0]} rotation={[0,Math.PI/2,0]} rotation-z={Math.PI/2} rotation-x={-Math.PI/2} rotation-y={Math.PI*.204}>  
-            <planeGeometry args={[0.93, 1.4]} />
+          position={[0.175,4.33,0]} rotation={[0,Math.PI/2,0]} rotation-z={Math.PI/2} rotation-x={-Math.PI/2} rotation-y={Math.PI*.204} scale={.1} ref={displayRef}>  
+            <planeGeometry args={[9.3, 14]}/>
             <meshBasicMaterial attach="material" map={texturedisplay} toneMapped={false}/>
       </mesh>
         </group>
 
     <group
-      position={[0, FLOOR_HEIGHT,0]}
+      position={[0, 2*FLOOR_HEIGHT,0]}
       rotation={[0, Math.PI/2, 0]}
       ref={bloco01}
     >
@@ -188,7 +256,7 @@ export function Senhas(props) {
     </group>
 
     <group
-      position={[0, 2*FLOOR_HEIGHT, 0]} 
+      position={[0, 3*FLOOR_HEIGHT, 0]} 
       rotation={[0, Math.PI/2, 0]} 
       ref={bloco02}
     > 
@@ -204,7 +272,7 @@ export function Senhas(props) {
     </group>
 
     <group
-      position={[0 , 3*FLOOR_HEIGHT, 0]} 
+      position={[0 , 4*FLOOR_HEIGHT, 0]} 
       rotation={[0, Math.PI/2, 0]}
       ref={bloco03}
     >

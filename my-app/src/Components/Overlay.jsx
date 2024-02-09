@@ -26,12 +26,12 @@ const Section = (props) => {
 const Indicator = (propsindicator) => {
   return (
     <div className="w-screen" style={{'opacity':`${propsindicator}` }}>
-        <div className="fixed right-0 flex-wrap flex-col-reverse flex-end basis-4 w-32 h-screen bg-white align-bottom ">
+        <div>
         <div>asasasas</div>
         <div>22222222</div>
         <div>3333333</div>
         <div>44444444</div>
-        <img src="./src/ctv.png" alt="" className="bottom-0"/>
+        <img src="./src/ctv.png" alt=""/>
       </div>
     </div>
   );
@@ -39,23 +39,27 @@ const Indicator = (propsindicator) => {
 
 const maxOpacity = 0.7;
 
-export const Overlay = () => {
+export const Overlay = (propsol) => {
   const scroll = useScroll();
   const [opacityFirstSection, setOpacityFirstSection] = useState(1);
   const [opacitySecondSection, setOpacitySecondSection] = useState(1);
   const [opacityThirdSection, setOpacityThirdSection] = useState(1);
   const [opacityFourthSection, setOpacityFourthSection] = useState(1);
+  const [opacityFifthSection, setOpacityFifthSection] = useState(1);
   // console.log(scroll.offset);
 
   // console.log('curve: '+scroll.curve(1/3,0,1/3));
 
   useFrame(() => {
-    setOpacityFirstSection(maxOpacity*(1-scroll.range(0  , .2)));
+    
+    setOpacityFirstSection(maxOpacity*(1));
     // setOpacitySecondSection(maxOpacity*(scroll.curve(1/3,0,1/3)**2));
-    setOpacitySecondSection(maxOpacity*(scroll.curve(1/6, 1/3)));
-    setOpacityThirdSection(maxOpacity*(scroll.curve(1/3, 2/3)));
-    setOpacityFourthSection(maxOpacity*(scroll.curve(1/2, 1)**4));
-  
+    setOpacitySecondSection(maxOpacity*(scroll.offset/(1/propsol.pages)));
+    setOpacityThirdSection(maxOpacity*(scroll.offset/(2/propsol.pages)));
+    setOpacityFourthSection(maxOpacity*(scroll.offset/(3/propsol.pages)));
+    setOpacityFifthSection(maxOpacity*(scroll.offset/(4/propsol.pages)));
+    // console.log(scroll.offset/(2/5));
+
   });
 
   return (
@@ -66,9 +70,9 @@ export const Overlay = () => {
         
         <Section opacity={opacityFirstSection}>
           <details open>
-	          <summary className="font-bold text-2x1  p-3 m-0 transition: 150">Dispensador de senhas</summary>
+	          <summary className="font-bold text-2xl  p-3 m-0">Dispensador de senhas</summary>
 	          
-            <ul>
+            <ul className="p-2 m-0">
               <li>Ecrã touch 600x1024</li>
               <li>Impressora térmica</li>
               <li>Sistema Linux</li>
@@ -85,30 +89,45 @@ export const Overlay = () => {
         opacity={opacitySecondSection} 
         >
         <details open>
-            <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
-            Montra Digital vertical
-       </summary>
-            <p>Montra Digital, no formato Vertical, com playlist de Campanhas </p>
+            <summary className="font-bold text-2xl  p-3 m-0">
+            Menu       </summary>
+            <p className="p-2 m-0">Menu HTML. Escolha uma opção para simular uma chamada de senha.
+
+</p>
         </details>
         
           
           
         </Section>
-        <Section opacity={opacityThirdSection}>
+        <Section  
+        opacity={opacityThirdSection} 
+        >
         <details open>
-            <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
-            Montra Digital horizontal
+            <summary className="font-bold text-2xl  p-3 m-0">
+            Montra Digital vertical
        </summary>
-            <p>Montra Digital, no formato Horizontal, com playlist de Campanhas</p>
-          </details>
+            <p className="p-2 m-0">Montra Digital, no formato Vertical, com playlist de Campanhas </p>
+        </details>
+        
+          
           
         </Section>
         <Section right opacity={opacityFourthSection}>
         <details open>
-            <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
+            <summary className="font-bold text-2xl  p-3 m-0">
+            Montra Digital horizontal
+       </summary>
+            <p className="p-2 m-0">Montra Digital, no formato Horizontal, com playlist de Campanhas</p>
+          </details>
+          
+        </Section>
+
+        <Section  opacity={opacityFifthSection}>
+        <details open>
+            <summary className="font-bold text-2xl  p-3 m-0">
             TV Corporativa
        </summary>
-            <p>TV Corporativa com Gestão de Atendimento e playlist de Campanhas e Conteúdos Institucionais
+            <p className="p-2 m-0">TV Corporativa com Gestão de Atendimento e playlist de Campanhas e Conteúdos Institucionais
 
 </p>
             

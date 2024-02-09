@@ -5,8 +5,8 @@ import { Senhas } from "./Senhas";
 export const Experience = () => {
   return (
     <>
-      <ambientLight intensity={.5} />
-      <directionalLight intensity={2.5} position={[6,2,3]} 
+      <ambientLight intensity={2.5} />
+      <directionalLight intensity={2} position={[6,2,3]} 
       // shadow-camera-left={-20} shadow-camera-right={20} shadow-camera-top={20} shadow-camera-bottom={-20} shadow-mapSize={(512,512)} 
       />
       
@@ -20,8 +20,8 @@ export const Experience = () => {
       /> */}
       <pointLight position={[10, 10, 10]} />
       {/* <OrbitControls enableZoom={false} minAzimuthAngle={1.3} maxAzimuthAngle={1.7} minPolarAngle={1.2} maxPolarAngle={1.7}       /> */}
-      <ScrollControls pages={4} damping={0.25}>
-        <Overlay />
+      <ScrollControls pages={5} damping={0.25}>
+        <Overlay pages={5} />
         <Senhas />
       </ScrollControls>
     </>
