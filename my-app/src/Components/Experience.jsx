@@ -6,7 +6,7 @@ export const Experience = () => {
   return (
     <>
       <ambientLight intensity={.5} />
-      <directionalLight intensity={3} position={[6,2,3]} 
+      <directionalLight intensity={2.5} position={[6,2,3]} 
       // shadow-camera-left={-20} shadow-camera-right={20} shadow-camera-top={20} shadow-camera-bottom={-20} shadow-mapSize={(512,512)} 
       />
       

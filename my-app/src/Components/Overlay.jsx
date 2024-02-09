@@ -12,7 +12,7 @@ const Section = (props) => {
       }`}
       
     >
-      <div itemID="firstDiv"  className="w-2/3 flex items-end justify-center">
+      <div itemID="firstDiv"  className="w-2/3 flex items-start justify-center">
         <div itemID="secondDiv" className="max-w-sm w-full">
           <div itemID="thirdDiv" className="bg-white  rounded-lg px-2 py-2" style={{'backgroundColor':`rgba(255,255,255,${props.opacity})`,'color':`rgba(0,0,0,${props.opacity*2})`}}>
             {props.children}
@@ -61,15 +61,19 @@ export const Overlay = () => {
   return (
     <Scroll html>
         {/* <Indicator opacity={opacityFirstSection} /> */}
+        <div className="w-screen">
+
+        
         <Section opacity={opacityFirstSection}>
           <details open>
-	          <summary className="font-bold text-2x1  p-3 m-0 transition: 150">Password Dispenser</summary>
-	          <p>Details</p>
+	          <summary className="font-bold text-2x1  p-3 m-0 transition: 150">Dispensador de senhas</summary>
+	          
             <ul>
-              <li>12" display</li>
-              <li>High Definition interface</li>
-              <li>Capacitive Touchscreen</li>
-              <li>Sound</li>
+              <li>Ecrã touch 600x1024</li>
+              <li>Impressora térmica</li>
+              <li>Sistema Linux</li>
+              <li>Interface web (HTML5)</li>
+              <li>Personalizável com marca do cliente </li>
             </ul>
             </details>
         
@@ -82,13 +86,9 @@ export const Overlay = () => {
         >
         <details open>
             <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
-            MD-V       </summary>
-            <p>Details</p>
-            <ul>
-              <li>20-50" displays</li>
-              <li>Customizable timeframe</li>
-              <li>X different programs</li>
-            </ul>
+            Montra Digital vertical
+       </summary>
+            <p>Montra Digital, no formato Vertical, com playlist de Campanhas </p>
         </details>
         
           
@@ -97,29 +97,24 @@ export const Overlay = () => {
         <Section opacity={opacityThirdSection}>
         <details open>
             <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
-            MD-H       </summary>
-            <p>Details</p>
-            <ul>
-              <li>20-50" displays</li>
-              <li>Customizable timeframe</li>
-              <li>X different programs</li>
-            </ul>
+            Montra Digital horizontal
+       </summary>
+            <p>Montra Digital, no formato Horizontal, com playlist de Campanhas</p>
           </details>
           
         </Section>
-        <Section opacity={opacityFourthSection}>
+        <Section right opacity={opacityFourthSection}>
         <details open>
             <summary className="font-bold text-2x1  p-3 m-0 transition: 150">
-            CTV       </summary>
-            <p>Details</p>
-            <ul>
-              <li>20-40" displays</li>
-              <li>Customizable timeframe</li>
-              <li>X different programs</li>
-            </ul>
+            TV Corporativa
+       </summary>
+            <p>TV Corporativa com Gestão de Atendimento e playlist de Campanhas e Conteúdos Institucionais
+
+</p>
+            
           </details>
         </Section>
-      
+        </div>
     </Scroll>
   );
 };

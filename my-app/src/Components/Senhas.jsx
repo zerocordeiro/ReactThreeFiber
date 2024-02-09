@@ -8,10 +8,11 @@ import { useGLTF, useScroll } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import gsap from "gsap"
 
-import img1 from '../md-v.png'
-import img2 from '../md-h.png'
-import img3 from '../ctv.png'
-import img4 from '../ipad.png'
+import img1 from '../md-v.jpg'
+import img2 from '../md-h.jpg'
+import img3 from '../ctv.jpg'
+import img4 from '../ipad.jpg'
+import img_display from '../display1.jpg'
 
 export const FLOOR_HEIGHT = 10;
 export const NB_FLOORS = 4;
@@ -19,7 +20,7 @@ export const NB_FLOORS = 4;
 
 
 export function Senhas(props) {
-  const { nodes, materials } = useGLTF('./Senhas.glb')
+  const { nodes, materials } = useGLTF('./Dispensador.glb')
   const ref = useRef();
   const tl = useRef();
 
@@ -34,6 +35,7 @@ export function Senhas(props) {
   const bloco03 = useRef();
   const bloco04 = useRef();
 
+  const texturedisplay = useLoader(THREE.TextureLoader, img_display);
   const texture1 = useLoader(THREE.TextureLoader, img1);
   const texture2 = useLoader(THREE.TextureLoader, img2);
   const texture3 = useLoader(THREE.TextureLoader, img3);
@@ -162,6 +164,11 @@ export function Senhas(props) {
           <mesh geometry={nodes.Cube.geometry} material={materials['Material.002']} position={[0, 1.286, 0]} castShadow  />
           <mesh geometry={nodes.Plane.geometry} material={materials['Material.001']} position={[1.021, 2.388, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[1, 1, 0.644]} castShadow />
           <mesh geometry={nodes.Plane001.geometry} material={materials['Material.001']} position={[1.188, 0, 0]} castShadow receiveShadow/>
+          <mesh
+          position={[0.175,4.33,0]} rotation={[0,Math.PI/2,0]} rotation-z={Math.PI/2} rotation-x={-Math.PI/2} rotation-y={Math.PI*.204}>  
+            <planeGeometry args={[0.93, 1.4]} />
+            <meshBasicMaterial attach="material" map={texturedisplay} toneMapped={false}/>
+      </mesh>
         </group>
 
     <group
