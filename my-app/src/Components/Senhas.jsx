@@ -8,11 +8,11 @@ import { useGLTF, useScroll } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import gsap from "gsap"
 
-import img1 from '../md-v.jpg'
-import img2 from '../md-h.jpg'
-import img3 from '../ctv.jpg'
-import img4 from '../ipad.jpg'
-import img_display from '../display1.jpg'
+import img1 from '../assets/md-v.jpg'
+import img2 from '../assets/md-h.jpg'
+import img3 from '../assets/ctv.jpg'
+import img4 from '../assets/ipad.jpg'
+import img_display from '../assets/display1.jpg'
 
 export const FLOOR_HEIGHT = 10;
 export const NB_FLOORS = 4;
@@ -20,7 +20,7 @@ export const NB_FLOORS = 4;
 
 
 export function Senhas(props) {
-  const { nodes, materials } = useGLTF('./src/Dispensador.glb')
+  const { nodes, materials } = useGLTF('./Dispensador.glb')
   const ref = useRef();
   const tl = useRef();
 
